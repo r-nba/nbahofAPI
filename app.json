@@ -1,0 +1,7 @@
+{
+  "name": "Matt and Sam prediction app",
+  "description": "A barebones Node.js app to predict the NBA season",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "basketball"],
+  "image": "heroku/nodejs"
+}
