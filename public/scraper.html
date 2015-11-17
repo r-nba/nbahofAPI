@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Sam and Matt's Prediction Rankings</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <th></th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sam</td>
+              <td data-bind="text: samScore$"></td>
+            </tr>
+            <tr>
+              <td>Matt</td>
+              <td data-bind="text: mattScore$"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table data-bind="if: teams$()" class = "table table-striped table-bordered" data-toggle="table">
+          <thead>
+            <th>Team</th>
+            <th>Projected Pythagorean wins</th>
+            <th>Actual wins</th>
+            <th>Expected wins</th>
+            <th>Differential</th>
+            <th>Over/Under</th>
+            <th>Sam</th>
+            <th>Matt</th>
+            <th>Last year</th>
+          </thead>
+
+          <tbody data-bind="foreach: { data: Object.keys(teams$()), as: 'teamName' }">
+            <tr>
+              <td data-bind="text: teamName"></td>
+              <!-- ko with: teams$()[teamName] -->
+              <td data-bind="text: pythagTotalWins"></td>
+              <td data-bind="text: actualWins"></td>
+              <td data-bind="text: pythagWinsSoFar"></td>
+              <td data-bind="text: differential"></td>
+              <td data-bind="text: OU"></td>
+              <td data-bind="text: Sam, css: {red: !isSamRight, green: isSamRight}"></td>
+              <td data-bind="text: Matt, css: {red: !isMattRight, green: isMattRight}"></td>
+              <td data-bind="text: Last"></td>
+              <!-- /ko -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="http://knockoutjs.com/js/jquery-1.11.1.min.js"></script>
+<script src="http://knockoutjs.com/downloads/knockout-latest.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+
+<script src="front.js"></script>
+
+</html>

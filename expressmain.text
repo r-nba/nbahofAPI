@@ -1,0 +1,40 @@
+var express = require('express');
+var cheerio = require('cheerio');
+var request = require('request');
+
+var app = express();
+app.use(express.static('public'));
+
+var calculatePythagoreanWins = function(pointsFor, pointsAgainst) {
+  var top = Math.pow(pointsFor, 16.5);
+  var bottom = top + Math.pow(pointsAgainst, 16.5);
+  var winPerc = (top + 0.0)/ bottom;
+  return Math.round(winPerc * 82, 2);
+}
+
+app.get('/', function (req, res) {
+  req.teams = "";
+  var callback = (function(_this) {
+    return function(data) {
+      res.send(data);
+    };
+  })(this);
+
+  request('http://espn.go.com/nba/standings', function (error, response, body) {
+    var $ = cheerio.load(body);
+    var teams = {};
+
+    $('.standings-row').each(function () {
+        var teamName = $(this).find('.team').find('.team-names').text();
+        var pointsFor = $(this).children()[9].children[0].data;
+        var pointsAgainst = $(this).children()[10].children[0].data;
+        teams[teamName] = calculatePythagoreanWins(pointsFor, pointsAgainst);
+        //wins, losses, differential
+        //expected wins so far
+    });
+    callback(JSON.stringify(teams));
+  });
+
+});
+
+app.listen(3000);

@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<h1> Hello </h1>
+  <table data-bind="if: teams$()" class = "table table-striped">
+    <thead>
+      <th>Team</th>
+      <th>Projected Pythagorean wins</th>
+      <th>Last year</th>
+      <th>Over/Under</th>
+      <th>Sam</th>
+      <th>Matt</th>
+    </thead>
+
+    <tbody data-bind="foreach: { data: Object.keys(teams$()), as: 'teamName' }">
+      <tr>
+        <td data-bind="text: teamName"></td>
+        <td data-bind="text: teams$()[teamName]"></td>
+        <td data-bind="text: predictions[teamName]['Last']"></td>
+        <td data-bind="text: predictions[teamName]['OU']"></td>
+        <td data-bind="text: predictions[teamName]['Sam']"></td>
+        <td data-bind="text: predictions[teamName]['Matt']"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+<script src="http://knockoutjs.com/js/jquery-1.11.1.min.js"></script>
+<script src="http://knockoutjs.com/downloads/knockout-latest.js"></script>
+<script src="front.js"></script>
+
+</html>
