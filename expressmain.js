@@ -88,7 +88,7 @@ var scrapeEspn = function(body) {
     return teams;
 };
 
-app.get('/', function (req, res) {
+app.get('/scrape', function (req, res) {
 
   request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
     var teams = scrapeEspn(body);
@@ -96,6 +96,11 @@ app.get('/', function (req, res) {
   });
 
 });
+
+app.get('/', function(req, res) { 
+  res.sendFile(__dirname+'/public/scraper.html');
+});
+
 
 var port = process.env.PORT || 3000;
 console.log("listening on port" + port);
