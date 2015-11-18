@@ -67,7 +67,7 @@ app.get('/', function (req, res) {
     };
   })(this);
 
-  request('http://espn.go.com/nba/standings', function (error, response, body) {
+  request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
     var $ = cheerio.load(body);
     var teams = {};
 
