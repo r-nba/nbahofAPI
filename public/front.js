@@ -1,13 +1,6 @@
 var Scraper
 var scoreCard;
-
-
-
 Scraper = (function() {
-  
-  
-
-
   function Scraper() {
     this.scoreCard = {
       OVER: [-3, 3],
@@ -16,7 +9,7 @@ Scraper = (function() {
       under: [0, 1]
     };
     this.teams$ = ko.observable();
-    $.ajax('http://localhost/', {
+    $.ajax('/', {
       success: (function(_this) {
         return function(result, status, xhr) {
           return _this.teams$(JSON.parse(result));
