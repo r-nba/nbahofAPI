@@ -43,31 +43,23 @@ var predictions = {
       'Portland Trail Blazers'  : { Last: 51,  OU: 27.5,  Sam: 'over', Matt:  'under' },
       'Denver Nuggets'  : { Last: 30,  OU: 27.5,  Sam: 'over', Matt:  'over' },
       'Philadelphia 76ers'  : { Last: 18,  OU: 20.5,  Sam: 'over', Matt:  'over' }
-    }
+    };
 
 var calculatePythagoreanTotalWins = function(winPerc, gamesPlayed, winsSoFar) {
   return Math.round(winPerc * (82-gamesPlayed), 2) + winsSoFar ;
-}
+};
 
 var calculatePythagoreanWinsSoFar = function(winPerc, gamesPlayed) {
   return Math.round(winPerc * gamesPlayed, 2)
-}
+};
 
 var calculatePythagoreanWinPercentage = function(pointsFor, pointsAgainst) {
   var top = Math.pow(pointsFor, 16.5);
   var bottom = top + Math.pow(pointsAgainst, 16.5);
   return (top + 0.0)/ bottom;
-}
+};
 
-app.get('/', function (req, res) {
-  req.teams = "";
-  var callback = (function(_this) {
-    return function(data) {
-      res.send(data);
-    };
-  })(this);
-
-  request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
+var scrapeEspn = function(body) {
     var $ = cheerio.load(body);
     var teams = {};
 
@@ -75,13 +67,13 @@ app.get('/', function (req, res) {
         var teamName = $(this).find('.team').find('.team-names').text();
         var pointsFor = $(this).children()[9].children[0].data;
         var pointsAgainst = $(this).children()[10].children[0].data;
-        var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst)
-        team = predictions[teamName];
+        var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
+        var team = predictions[teamName];
 
         team['actualWins'] = parseInt($(this).children()[1].children[0].data);
         team['losses'] = parseInt($(this).children()[2].children[0].data);
         team['differential'] = $(this).children()[11].children[0].data;
-        var gamesPlayed = team['actualWins'] + team['losses']
+        var gamesPlayed = team['actualWins'] + team['losses'];
 
         team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
         team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
@@ -93,10 +85,18 @@ app.get('/', function (req, res) {
         teams[teamName] = team;
 
     });
-    callback(JSON.stringify(teams));
+    return teams;
+};
+
+app.get('/', function (req, res) {
+
+  request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
+    var teams = scrapeEspn(body);
+    res.send(JSON.stringify(teams));
   });
 
 });
+
 var port = process.env.PORT || 3000;
 console.log("listening on port" + port);
 app.listen(port);
