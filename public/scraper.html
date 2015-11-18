@@ -36,8 +36,9 @@
           <thead>
             <th>Team</th>
             <th>Projected Pythagorean wins</th>
-            <th>Actual wins</th>
             <th>Expected wins</th>
+            <th>Actual wins</th>
+            <th>Losses</th>
             <th>Differential</th>
             <th>Over/Under</th>
             <th>Sam</th>
@@ -50,8 +51,9 @@
               <td data-bind="text: teamName"></td>
               <!-- ko with: teams$()[teamName] -->
               <td data-bind="text: pythagTotalWins"></td>
-              <td data-bind="text: actualWins"></td>
               <td data-bind="text: pythagWinsSoFar"></td>
+              <td data-bind="text: actualWins"></td>
+              <td data-bind="text: losses"></td>
               <td data-bind="text: differential"></td>
               <td data-bind="text: OU"></td>
               <td data-bind="text: Sam, css: {red: !isSamRight, green: isSamRight}"></td>
