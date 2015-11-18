@@ -16,7 +16,7 @@ Scraper = (function() {
       under: [0, 1]
     };
     this.teams$ = ko.observable();
-    $.ajax('http://localhost:3000', {
+    $.ajax('http://localhost/', {
       success: (function(_this) {
         return function(result, status, xhr) {
           return _this.teams$(JSON.parse(result));
