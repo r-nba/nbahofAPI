@@ -1,6 +1,8 @@
 var express = require('express');
 var cheerio = require('cheerio');
 var request = require('request');
+var NodeCache = require( "node-cache" );
+var myCache = new NodeCache();
 
 var app = express();
 app.use(express.static('public'));
@@ -89,16 +91,21 @@ var scrapeEspn = function(body) {
 };
 
 app.get('/scrape', function (req, res) {
-
-  request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
-    var teams = scrapeEspn(body);
-    res.send(JSON.stringify(teams));
-  });
-
+  var teams = myCache.get('teams')
+  if(!teams) {
+    request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
+      var teams = scrapeEspn(body);
+      myCache.set('teams', teams, 21600);
+      res.send(JSON.stringify(teams))
+    });  
+  } else {
+    res.send(JSON.stringify(teams));  
+  }
 });
 
 app.get('/', function(req, res) { 
-  res.sendFile(__dirname+'/public/scraper.html');
+  res.sendFile(__dirname+
+    '/public/scraper.html');
 });
 
 
