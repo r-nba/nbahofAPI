@@ -45,8 +45,8 @@ var predictions = {
       'Philadelphia 76ers'  : { Last: 18,  OU: 20.5,  Sam: 'over', Matt:  'over' }
     }
 
-var calculatePythagoreanTotalWins = function(winPerc) {
-  return Math.round(winPerc * 82, 2);
+var calculatePythagoreanTotalWins = function(winPerc, gamesPlayed, winsSoFar) {
+  return Math.round(winPerc * (82-gamesPlayed), 2) + winsSoFar ;
 }
 
 var calculatePythagoreanWinsSoFar = function(winPerc, gamesPlayed) {
@@ -78,12 +78,12 @@ app.get('/', function (req, res) {
         var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst)
         team = predictions[teamName];
 
-        team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc);
         team['actualWins'] = parseInt($(this).children()[1].children[0].data);
-        team['losses'] = parseInt($(this).children()[2].children[0].data); 
+        team['losses'] = parseInt($(this).children()[2].children[0].data);
         team['differential'] = $(this).children()[11].children[0].data;
-
         var gamesPlayed = team['actualWins'] + team['losses']
+
+        team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
         team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
         team['isMattRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Matt']);
         team['isSamRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Sam']);
