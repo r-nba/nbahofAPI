@@ -5,3 +5,11 @@
 .green {
   background-color: green;
 }
+
+.red-border {
+  border: 2px dashed red;
+}
+
+.green-border {
+  border: 2px dashed green;
+}

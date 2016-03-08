@@ -3,7 +3,7 @@ var cheerio = require('cheerio');
 
 function parse(url, callback) {
     request(url, function (error, response, body) {
-        console.log("parsing")
+        console.log("parsing");
         var
             $ = cheerio.load(body);
         var teams = {};
@@ -24,19 +24,19 @@ function parse(url, callback) {
 
 function startServer() {
   var http = require("http");
-  console.log("starting Server")
+  console.log("starting Server");
 
   http.createServer(function (request, response) {
-     console.log("creating server")
+     console.log("creating server");
      // Send the HTTP header 
      // HTTP Status: 200 : OK
      // Content Type: text/plain
     response.writeHead(200, {'Content-Type': 'text/plain'});
 
     parse('http://espn.go.com/nba/standings', (function(_this) {
-      console.log("starting callback")
+      console.log("starting callback");
       return function(data) {
-        console.log("returning response")
+        console.log("returning response");
         return response.end(data);
       };
     })(this));
@@ -46,4 +46,4 @@ function startServer() {
   console.log('Server running at http://127.0.0.1:8081/');
 }
 
-startServer()
+startServer();

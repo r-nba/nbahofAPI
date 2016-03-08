@@ -48,7 +48,7 @@
           </thead>
 
           <tbody data-bind="foreach: { data: Object.keys(teams$()), as: 'teamName' }">
-            <tr>
+            <tr data-bind="css: {'red-border': isOverImpossible, 'green-border' : isUnderImpossible}">
               <td data-bind="text: teamName"></td>
               <!-- ko with: teams$()[teamName] -->
               <td>
