@@ -37,16 +37,16 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <table data-bind="if: teams$()" class = "table table-striped table-bordered" data-toggle="table">
+        <table data-bind="if: teams$()" class = "table table-striped" data-toggle="table">
           <thead>
             <th>Team</th>
-            <th>Pythagorean Projected wins</th>
+            <th>Pythagorean wins</th>
             <th>Over/Under</th>
             <th>Sam</th>
             <th>Matt</th>
             <th>Mal</th>
-            <th>Expected wins </th>
-            <th>Actual wins</th>
+            <th>Win % </th>
+            <th>Wins</th>
             <th>Losses</th>
             <th>Differential</th>
             <th>Last year</th>
@@ -69,7 +69,7 @@
               <td data-bind="text: samDisplay, css: { red: !isSamRight, green: isSamRight }"></td>
               <td data-bind="text: mattDisplay, css: { red: !isMattRight, green: isMattRight }"></td>
               <td data-bind="text: malDisplay, css: {red: !isMalRight, green: isMalRight }"></td>
-              <td data-bind="text: pythagWinsSoFar"></td>
+              <td data-bind="text: winPerc"></td>
               <td data-bind="text: actualWins"></td>
               <td data-bind="text: losses"></td>
               <td data-bind="text: differential"></td>

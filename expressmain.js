@@ -84,6 +84,7 @@ var scrapeEspn = function(body) {
         team['differential'] = $(this).children()[11].children[0].data;
         var gamesPlayed = team['actualWins'] + team['losses'];
 
+        team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
         team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
         team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
         team['isMattRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Matt']);
@@ -102,7 +103,7 @@ var scrapeEspn = function(body) {
 };
 
 app.get('/scrape', function (req, res) {
-  var teams = myCache.get('teams')
+  var teams = myCache.get('teams');
   if(!teams) {
     request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
       var teams = scrapeEspn(body);
@@ -118,7 +119,6 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname+
     '/public/scraper.html');
 });
-
 
 var port = process.env.PORT || 3000;
 console.log("listening on port" + port);

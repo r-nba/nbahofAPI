@@ -1,9 +1,13 @@
 .red {
   background-color: red;
+  color:#eeeeee;
+  font-weight: bold;
 }
 
 .green {
   background-color: green;
+  color: #eeeeee;
+  font-weight: bold;
 }
 
 .red-border {
@@ -12,4 +16,12 @@
 
 .green-border {
   border: 2px dashed green;
+}
+
+.table {
+  font-size: 12px;
+}
+
+.table > tbody > tr > td {
+  padding: 4px;
 }
