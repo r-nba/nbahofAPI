@@ -14,6 +14,13 @@ var isPlayerRight = function(overUnder, pythagWins, prediction) {
     return overUnder > pythagWins;
   };
 
+var translations  = {
+    'OVER' : 'Over Lock',
+    'UNDER' : 'Under Lock',
+    'over' : 'Over',
+    'under' : 'Under'
+};
+
 var predictions = {
     'Utah Jazz' : { Last: 40, OU: 47, Sam: 'under', Matt: 'under', Mal: 'under' },
     'New York Knicks' : { Last: 32, OU: 40.5, Sam: 'UNDER', Matt: 'over', Mal: 'over' },
@@ -83,6 +90,9 @@ var scrapeEspn = function(body) {
         team['isSamRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Sam']);
         team['isMalRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Mal']);
         team['isUnderImpossible'] = team['actualWins'] > team['OU'];
+        team['samDisplay'] = translations[team['Sam']];
+        team['mattDisplay'] = translations[team['Matt']];
+        team['malDisplay'] = translations[team['Mal']];
         var gamesRemaining = 82-gamesPlayed;
         team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
         teams[teamName] = team;
