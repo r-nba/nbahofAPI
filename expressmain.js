@@ -96,6 +96,8 @@ var scrapeEspn = function(body) {
         team['malDisplay'] = translations[team['Mal']];
         var gamesRemaining = 82-gamesPlayed;
         team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
+        var lossesLastYear = 82 - team['Last'];
+        team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
         teams[teamName] = team;
 
     });

@@ -1,21 +1,19 @@
 .red {
-  background-color: red;
-  color:#eeeeee;
+  background-color: rgba(255,0,0,0.2) ;
   font-weight: bold;
 }
 
 .green {
-  background-color: green;
-  color: #eeeeee;
+  background-color: rgba(0,255,0,0.2);
   font-weight: bold;
 }
 
 .red-border {
-  border: 2px dashed red;
+  border: 1px dashed rgba(255,0,0,0.2);
 }
 
 .green-border {
-  border: 2px dashed green;
+  border: 1px dashed rgba(0,255,0,0.2);
 }
 
 .table {
