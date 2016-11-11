@@ -1,4 +1,4 @@
-var Scraper
+var Scraper;
 var scoreCard;
 Scraper = (function() {
   function Scraper() {
@@ -22,8 +22,8 @@ Scraper = (function() {
         results = [];
         if(teams$()) {
           for (teamName in teams$()) {
-            var team = teams$()[teamName];
-            results.push([team.Matt, team.Sam, team.isMattRight, team.isSamRight]);
+            team = teams$()[teamName];
+            results.push([team.Matt, team.Sam, team.Mal, team.isMattRight, team.isSamRight, team.isMalRight]);
           }
         }
         return results;
@@ -31,23 +31,34 @@ Scraper = (function() {
     })(this));
     this.samScore$ = ko.computed((function(_this) {
       return function() {
-        return _.reduce(_this.playerScoreList(), (function(memo, playerScore) {
-          return memo + this.scoreCard[playerScore[1]][+playerScore[3]];
-        }), 0);
+            var x = 0;
+            return _.reduce(_this.playerScoreList(), (function(memo, playerScore) {
+                if(playerScore != undefined) {
+                    return memo + this.scoreCard[playerScore[1]][+playerScore[4]];
+                }
+                return memo;
+            }), 0);
       };
     })(this));
     this.mattScore$ = ko.computed((function(_this) {
       return function() {
         return _.reduce(_this.playerScoreList(), (function(memo, playerScore) {
-          return memo + this.scoreCard[playerScore[0]][+playerScore[2]];
+          return memo + this.scoreCard[playerScore[0]][+playerScore[3]];
         }), 0);
+      };
+    })(this));
+    this.malScore$ = ko.computed((function(_this) {
+      return function() {
+          return _.reduce(_this.playerScoreList(), (function(memo, playerScore) {
+              return memo + this.scoreCard[playerScore[2]][+playerScore[5]];
+          }), 0);
       };
     })(this));
   }
 
   Scraper.prototype.score = function(prediction, correct) {
     return scoreCard[prediction][+correct];
-  }
+  };
   return Scraper;
 
 })();

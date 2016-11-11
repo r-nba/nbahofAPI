@@ -15,36 +15,36 @@ var isPlayerRight = function(overUnder, pythagWins, prediction) {
   };
 
 var predictions = {
-      'Golden State Warriors'  : { Last: 67,  OU: 59.5,  Sam: 'OVER', Matt:  'OVER' },
-      'Los Angeles Clippers'  : { Last: 56,  OU: 57.5,  Sam: 'under', Matt:  'over' },
-      'San Antonio Spurs'  : { Last: 55,  OU: 57.5,  Sam: 'under', Matt:  'under' },
-      'Oklahoma City Thunder'  : { Last: 45,  OU: 57.5,  Sam: 'under', Matt:  'under' },
-      'Cleveland Cavaliers'  : { Last: 53,  OU: 56.5,  Sam: 'under', Matt:  'OVER' },
-      'Houston Rockets'  : { Last: 56,  OU: 56.6,  Sam: 'under', Matt:  'UNDER' },
-      'Memphis Grizzlies'  : { Last: 55,  OU: 51.5,  Sam: 'under', Matt:  'over' },
-      'Atlanta Hawks'  : { Last: 60,  OU: 50.5,  Sam: 'over', Matt:  'over' },
-      'Chicago Bulls'  : { Last: 50,  OU: 49.5,  Sam: 'over', Matt:  'over' },
-      'New Orleans Pelicans'  : { Last: 45,  OU: 48.5,  Sam: 'UNDER', Matt:  'UNDER' },
-      'Miami Heat'  : { Last: 37,  OU: 47.5,  Sam: 'OVER', Matt:  'over' },
-      'Washington Wizards'  : { Last: 46,  OU: 46.5,  Sam: 'over', Matt:  'under' },
-      'Toronto Raptors'  : { Last: 49,  OU: 46.5,  Sam: 'under', Matt:  'over' },
-      'Milwaukee Bucks'  : { Last: 41,  OU: 45.5,  Sam: 'UNDER', Matt:  'UNDER' },
-      'Boston Celtics'  : { Last: 40,  OU: 44.5,  Sam: 'over', Matt:  'under' },
-      'Utah Jazz'  : { Last: 38,  OU: 42.5,  Sam: 'under', Matt:  'under' },
-      'Indiana Pacers'  : { Last: 38,  OU: 40.5,  Sam: 'under', Matt:  'under' },
-      'Phoenix Suns'  : { Last: 39,  OU: 37.5,  Sam: 'over', Matt:  'under' },
-      'Detroit Pistons'  : { Last: 32,  OU: 36.5,  Sam: 'under', Matt:  'over' },
-      'Dallas Mavericks'  : { Last: 50,  OU: 36.5,  Sam: 'under', Matt:  'over' },
-      'Sacramento Kings'  : { Last: 29,  OU: 35.5,  Sam: 'under', Matt:  'under' },
-      'Orlando Magic'  : { Last: 25,  OU: 34.5,  Sam: 'over', Matt:  'under' },
-      'Charlotte Hornets'  : { Last: 33,  OU: 33.5,  Sam: 'under', Matt:  'UNDER' },
-      'New York Knicks'  : { Last: 17,  OU: 29.5,  Sam: 'over', Matt:  'under' },
-      'Los Angeles Lakers'  : { Last: 21,  OU: 28.5,  Sam: 'UNDER', Matt:  'under' },
-      'Minnesota Timberwolves'  : { Last: 16,  OU: 28.5,  Sam: 'under', Matt:  'under' },
-      'Brooklyn Nets'  : { Last: 38,  OU: 28.5,  Sam: 'UNDER', Matt:  'under' },
-      'Portland Trail Blazers'  : { Last: 51,  OU: 27.5,  Sam: 'over', Matt:  'under' },
-      'Denver Nuggets'  : { Last: 30,  OU: 27.5,  Sam: 'over', Matt:  'over' },
-      'Philadelphia 76ers'  : { Last: 18,  OU: 20.5,  Sam: 'over', Matt:  'over' }
+    'Utah Jazz' : { Last: 40, OU: 47, Sam: 'under', Matt: 'under', Mal: 'under' },
+    'New York Knicks' : { Last: 32, OU: 40.5, Sam: 'UNDER', Matt: 'over', Mal: 'over' },
+    'Miami Heat' : { Last: 48, OU: 35, Sam: 'under', Matt: 'over', Mal: 'over' },
+    'Minnesota Timberwolves' : { Last: 29, OU: 42.5, Sam: 'under', Matt: 'under', Mal: 'under' },
+    'Chicago Bulls' : { Last: 42, OU: 40.5, Sam: 'under', Matt: 'under', Mal: 'over' },
+    'New Orleans Pelicans' : { Last: 30, OU: 36.5, Sam: 'under', Matt: 'under', Mal: 'under' },
+    'Toronto Raptors' : { Last: 56, OU: 50, Sam: 'over', Matt: 'over', Mal: 'OVER' },
+    'Brooklyn Nets' : { Last: 21, OU: 21.5, Sam: 'over', Matt: 'under', Mal: 'over' },
+    'Golden State Warriors' : { Last: 73, OU: 66.5, Sam: 'OVER', Matt: 'OVER', Mal: 'under' },
+    'Washington Wizards' : { Last: 41, OU: 42.5, Sam: 'under', Matt: 'over', Mal: 'under' },
+    'Oklahoma City Thunder' : { Last: 55, OU: 45, Sam: 'under', Matt: 'over', Mal: 'under' },
+    'LA Clippers' : { Last: 53, OU: 54, Sam: 'over', Matt: 'over', Mal: 'over' },
+    'Indiana Pacers' : { Last: 45, OU: 44.5, Sam: 'over', Matt: 'under', Mal: 'under' },
+    'Philadelphia 76ers' : { Last: 10, OU: 25, Sam: 'under', Matt: 'UNDER', Mal: 'over' },
+    'Portland Trail Blazers' : { Last: 44, OU: 45.5, Sam: 'over', Matt: 'over', Mal: 'under' },
+    'Atlanta Hawks' : { Last: 48, OU: 43.5, Sam: 'over', Matt: 'under', Mal: 'under' },
+    'Phoenix Suns' : { Last: 23, OU: 29, Sam: 'under', Matt: 'over', Mal: 'over' },
+    'Orlando Magic' : { Last: 35, OU: 37, Sam: 'under', Matt: 'under', Mal: 'under' },
+    'San Antonio Spurs' : { Last: 67, OU: 57, Sam: 'over', Matt: 'OVER', Mal: 'OVER' },
+    'Los Angeles Lakers' : { Last: 17, OU: 25, Sam: 'over', Matt: 'over', Mal: 'OVER' },
+    'Denver Nuggets' : { Last: 33, OU: 37, Sam: 'under', Matt: 'under', Mal: 'under' },
+    'Milwaukee Bucks' : { Last: 33, OU: 36, Sam: 'under', Matt: 'over', Mal: 'over' },
+    'Detroit Pistons' : { Last: 44, OU: 44.5, Sam: 'under', Matt: 'over', Mal: 'over' },
+    'Cleveland Cavaliers' : { Last: 57, OU: 57.5, Sam: 'over', Matt: 'over', Mal: 'under' },
+    'Dallas Mavericks' : { Last: 42, OU: 40, Sam: 'under', Matt: 'over', Mal: 'over' },
+    'Sacramento Kings' : { Last: 33, OU: 32.5, Sam: 'over', Matt: 'over', Mal: 'under' },
+    'Boston Celtics' : { Last: 48, OU: 52.5, Sam: 'over', Matt: 'over', Mal: 'over' },
+    'Houston Rockets' : { Last: 41, OU: 44, Sam: 'under', Matt: 'over', Mal: 'OVER' },
+    'Charlotte Hornets' : { Last: 48, OU: 40.5, Sam: 'under', Matt: 'under', Mal: 'over' },
+    'Memphis Grizzlies' : { Last: 42, OU: 44, Sam: 'UNDER', Matt: 'under', Mal: 'under' }
     };
 
 var calculatePythagoreanTotalWins = function(winPerc, gamesPlayed, winsSoFar) {
@@ -81,6 +81,7 @@ var scrapeEspn = function(body) {
         team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
         team['isMattRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Matt']);
         team['isSamRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Sam']);
+        team['isMalRight'] = isPlayerRight(team['OU'], team['pythagTotalWins'], team['Mal']);
         team['isUnderImpossible'] = team['actualWins'] > team['OU'];
         var gamesRemaining = 82-gamesPlayed;
         team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
