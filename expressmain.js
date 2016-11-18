@@ -49,7 +49,7 @@ var predictions = {
     'Dallas Mavericks' : { Last: 42, OU: 40, Sam: 'under', Matt: 'over', Mal: 'over' },
     'Sacramento Kings' : { Last: 33, OU: 32.5, Sam: 'over', Matt: 'over', Mal: 'under' },
     'Boston Celtics' : { Last: 48, OU: 52.5, Sam: 'over', Matt: 'over', Mal: 'over' },
-    'Houston Rockets' : { Last: 41, OU: 44, Sam: 'under', Matt: 'over', Mal: 'OVER' },
+    'Houston Rockets' : { Last: 41, OU: 44, Sam: 'under', Matt: 'over', Mal: 'over' },
     'Charlotte Hornets' : { Last: 48, OU: 40.5, Sam: 'under', Matt: 'under', Mal: 'over' },
     'Memphis Grizzlies' : { Last: 42, OU: 44, Sam: 'UNDER', Matt: 'under', Mal: 'under' }
     };
