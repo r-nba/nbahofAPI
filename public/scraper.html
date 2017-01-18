@@ -73,9 +73,9 @@
                 <!-- /ko  -->
               </td>
               <td data-bind="text: OU"></td>
-              <td data-bind="text: samDisplay, css: { red: !isSamRight, green: isSamRight }"></td>
-              <td data-bind="text: mattDisplay, css: { red: !isMattRight, green: isMattRight }"></td>
-              <td data-bind="text: malDisplay, css: {red: !isMalRight, green: isMalRight }"></td>
+              <td data-bind="text: samDisplay, css: { red: !isSamRight, green: isSamRight && (isSamRight != 2), yellow: isSamRight ==2 }"></td>
+              <td data-bind="text: mattDisplay, css: { red: !isMattRight, green: isMattRight && (isMattRight != 2), yellow: isMattRight ==2 }"></td>
+              <td data-bind="text: malDisplay, css: {red: !isMalRight, green: isMalRight && (isMalRight != 2), yellow: isMalRight ==2 }"></td>
               <td data-bind="text: actualWins"></td>
               <td data-bind="text: losses"></td>
               <td data-bind="text: winPerc"></td>

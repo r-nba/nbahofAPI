@@ -3,10 +3,10 @@ var scoreCard;
 Scraper = (function() {
   function Scraper() {
     this.scoreCard = {
-      OVER: [-3, 3],
-      UNDER: [-3, 3],
-      over: [0, 1],
-      under: [0, 1]
+      OVER: [-3, 3, 0],
+      UNDER: [-3, 3, 0],
+      over: [0, 1, 0],
+      under: [0, 1, 0]
     };
     this.teams$ = ko.observable();
     $.ajax('/scrape', {

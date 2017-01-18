@@ -8,6 +8,10 @@ var app = express();
 app.use(express.static('public'));
 
 var isPlayerRight = function(overUnder, pythagWins, prediction) {
+
+    if(overUnder == pythagWins) {
+        return 2;
+    }
     if (prediction === 'over' || prediction === 'OVER') {
       return overUnder < pythagWins;
     }
