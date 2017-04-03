@@ -14,11 +14,11 @@
 }
 
 .red-border {
-  border: 1px dashed rgba(255,0,0,0.2);
+  border: 2px dashed rgba(255,0,0,0.2);
 }
 
 .green-border {
-  border: 1px dashed rgba(0,255,0,0.2);
+  border: 2px dashed rgba(0,255,0,0.2);
 }
 
 .table {
