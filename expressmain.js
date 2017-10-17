@@ -118,7 +118,7 @@ app.get('/scrape', function (req, res) {
       res.send(JSON.stringify(teams))
     });  
   } else {
-    res.send(JSON.stringify(teams));  
+    res.send(JSON.stringify({ values: teams}));
   }
 });
 
