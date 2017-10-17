@@ -109,6 +109,7 @@ var scrapeEspn = function(body) {
 };
 
 app.get('/scrape', function (req, res) {
+  res.setHeader("Content-Type", "application/json")
   var teams = myCache.get('teams');
   if(!teams) {
     request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
