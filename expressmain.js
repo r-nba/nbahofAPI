@@ -108,7 +108,7 @@ app.get('/scrape', function (req, res) {
   if(!teams) {
     request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
       var teams = scrapeEspn(body);
-      myCache.set('teams', teams, 21600);
+      myCache.set('teams', teams, 3600);
       res.send(JSON.stringify(teams))
     });  
   } else {

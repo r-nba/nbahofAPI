@@ -59,7 +59,7 @@
             <th>Last Year</th>
           </thead>
 
-          
+
           <tbody data-bind="foreach: { data: Object.keys(teams$()), as: 'teamName' }">
             <tr data-bind="css: {'red-border': teams$()[teamName]['isOverImpossible'], 'green-border' : teams$()[teamName]['isUnderImpossible']}">
               <td data-bind="text: teamName"></td>
