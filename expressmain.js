@@ -76,28 +76,30 @@ var scrapeEspn = function(body) {
     var $ = cheerio.load(body);
     var teams = {};
 
-    $('.standings-row').each(function () {
-        var teamName = $(this).find('.team').find('.team-names').text();
-        var pointsFor = $(this).children()[9].children[0].data;
-        var pointsAgainst = $(this).children()[10].children[0].data;
-        var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
-        var team = predictions[teamName];
+    $('.full-table').each(function () {
+        var teamName = $(this).children[0].children[0].text();
+        if(predictions.indexOf(teamName) >= 0)
+        {
+            var pointsFor = $(this).children[5].data;
+            var pointsAgainst = $(this).children[6].data;
+            var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
+            var team = predictions[teamName];
 
-        team['actualWins'] = parseInt($(this).children()[1].children[0].data);
-        team['losses'] = parseInt($(this).children()[2].children[0].data);
-        team['differential'] = $(this).children()[11].children[0].data;
-        var gamesPlayed = team['actualWins'] + team['losses'];
+            team['actualWins'] = parseInt($(this).children[1].innerText);
+            team['losses'] = parseInt($(this).children[2].innerText);
+            team['differential'] = parseFloat($(this).children[5]) - parseFloat($(this).children[6]);
+            var gamesPlayed = team['actualWins'] + team['losses'];
 
-        team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
-        team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
-        team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
-        team['isUnderImpossible'] = team['actualWins'] > team['OU'];
-        var gamesRemaining = 82-gamesPlayed;
-        team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
-        var lossesLastYear = 82 - team['Last'];
-        team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
-        teams[teamName] = team;
-
+            team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
+            team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
+            team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
+            team['isUnderImpossible'] = team['actualWins'] > team['OU'];
+            var gamesRemaining = 82-gamesPlayed;
+            team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
+            var lossesLastYear = 82 - team['Last'];
+            team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
+            teams[teamName] = team;
+        }
     });
     return teams;
 };
@@ -106,7 +108,7 @@ app.get('/scrape', function (req, res) {
   res.setHeader("Content-Type", "application/json")
   var teams = myCache.get('teams');
   if(!teams) {
-    request('http://espn.go.com/nba/standings/_/group/league', function (error, response, body) {
+    request('https://www.basketball-reference.com/boxscores/', function (error, response, body) {
       var teams = scrapeEspn(body);
       myCache.set('teams', teams, 3600);
       res.send(JSON.stringify(teams))
