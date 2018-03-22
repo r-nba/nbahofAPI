@@ -79,6 +79,10 @@ var scrapeEspn = function(body) {
     console.log("Do this!");
     $('.full_table').each(function () {
         var teamName = $(this).children()[0].children[0].children[0].data;
+        if(teamName === 'Los Angeles Clippers') {
+            teamName = 'LA Clippers';
+        }
+
         var pointsFor = $(this).children()[5].children[0].data;
         var pointsAgainst = $(this).children()[6].children[0].data;
         var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
@@ -100,7 +104,6 @@ var scrapeEspn = function(body) {
         teams[teamName] = team;
 
     });
-    teams['LA Clippers'] = teams['Los Angeles Clippers'];
 
     return teams;
 };
