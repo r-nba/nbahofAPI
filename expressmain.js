@@ -34,7 +34,7 @@ var predictions = {
     'New Orleans Pelicans': {Last: 34, OU: 39.5},
     'Utah Jazz': {Last: 51, OU: 41},
     'Portland Trail Blazers': {Last: 41, OU: 42.5},
-    'LA Clippers': {Last: 51, OU: 43.5},
+    'Los Angeles Clippers': {Last: 51, OU: 43.5},
     'Denver Nuggets': {Last: 40, OU: 45.5},
     'Minnesota Timberwolves': {Last: 31, OU: 48.5},
     'Oklahoma City Thunder': {Last: 47, OU: 50.5},
@@ -76,30 +76,29 @@ var scrapeEspn = function(body) {
     var $ = cheerio.load(body);
     var teams = {};
 
-    $('.full-table').each(function () {
-        var teamName = $(this).children[0].children[0].text();
-        if(predictions.indexOf(teamName) >= 0)
-        {
-            var pointsFor = $(this).children[5].data;
-            var pointsAgainst = $(this).children[6].data;
-            var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
-            var team = predictions[teamName];
+    console.log("Do this!");
+    $('.full_table').each(function () {
+        var teamName = $(this).children()[0].children[0].children[0].data;
+        var pointsFor = $(this).children()[5].children[0].data;
+        var pointsAgainst = $(this).children()[6].children[0].data;
+        var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
+        var team = predictions[teamName];
+        console.log(teamName);
+        team['actualWins'] = parseInt($(this).children()[1].children[0].data);
+        team['losses'] = parseInt($(this).children()[1].children[0].data);
+        team['differential'] = pointsFor-pointsAgainst;
+        var gamesPlayed = team['actualWins'] + team['losses'];
 
-            team['actualWins'] = parseInt($(this).children[1].innerText);
-            team['losses'] = parseInt($(this).children[2].innerText);
-            team['differential'] = parseFloat($(this).children[5]) - parseFloat($(this).children[6]);
-            var gamesPlayed = team['actualWins'] + team['losses'];
+        team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
+        team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
+        team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
+        team['isUnderImpossible'] = team['actualWins'] > team['OU'];
+        var gamesRemaining = 82-gamesPlayed;
+        team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
+        var lossesLastYear = 82 - team['Last'];
+        team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
+        teams[teamName] = team;
 
-            team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
-            team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
-            team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
-            team['isUnderImpossible'] = team['actualWins'] > team['OU'];
-            var gamesRemaining = 82-gamesPlayed;
-            team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
-            var lossesLastYear = 82 - team['Last'];
-            team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
-            teams[teamName] = team;
-        }
     });
     return teams;
 };
