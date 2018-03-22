@@ -85,8 +85,8 @@ var scrapeEspn = function(body) {
         var team = predictions[teamName];
         console.log(teamName);
         team['actualWins'] = parseInt($(this).children()[1].children[0].data);
-        team['losses'] = parseInt($(this).children()[1].children[0].data);
-        team['differential'] = pointsFor-pointsAgainst;
+        team['losses'] = parseInt($(this).children()[2].children[0].data);
+        team['differential'] = Math.round(pointsFor-pointsAgainst,3);
         var gamesPlayed = team['actualWins'] + team['losses'];
 
         team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
