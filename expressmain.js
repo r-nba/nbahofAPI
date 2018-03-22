@@ -100,6 +100,8 @@ var scrapeEspn = function(body) {
         teams[teamName] = team;
 
     });
+    teams['LA Clippers'] = teams['Los Angeles Clippers'];
+
     return teams;
 };
 
