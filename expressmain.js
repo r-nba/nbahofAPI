@@ -34,7 +34,7 @@ var predictions = {
     'New Orleans Pelicans': {Last: 34, OU: 39.5},
     'Utah Jazz': {Last: 51, OU: 41},
     'Portland Trail Blazers': {Last: 41, OU: 42.5},
-    'Los Angeles Clippers': {Last: 51, OU: 43.5},
+    'LA Clippers': {Last: 51, OU: 43.5},
     'Denver Nuggets': {Last: 40, OU: 45.5},
     'Minnesota Timberwolves': {Last: 31, OU: 48.5},
     'Oklahoma City Thunder': {Last: 47, OU: 50.5},
