@@ -87,7 +87,6 @@ var scrapeEspn = function(body) {
         var pointsAgainst = $(this).children()[6].children[0].data;
         var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
         var team = predictions[teamName];
-        console.log(teamName);
         team['actualWins'] = parseInt($(this).children()[1].children[0].data);
         team['losses'] = parseInt($(this).children()[2].children[0].data);
         team['differential'] = Math.round(pointsFor-pointsAgainst,3);
@@ -108,19 +107,31 @@ var scrapeEspn = function(body) {
     return teams;
 };
 
-app.get('/scrape', function (req, res) {
-  res.setHeader("Content-Type", "application/json")
-  var teams = myCache.get('teams');
-  if(!teams) {
-    request('https://www.basketball-reference.com/boxscores/', function (error, response, body) {
-      var teams = scrapeEspn(body);
-      myCache.set('teams', teams, 3600);
-      res.send(JSON.stringify(teams))
-    });  
-  } else {
-    res.send(JSON.stringify({ values: teams}));
-  }
-});
+var processResults = function (req, res) {
+    res.setHeader("Content-Type", "application/json");
+    console.log(req.params);
+
+    var url = 'https://www.basketball-reference.com/boxscores/';
+
+    if(req.params.year && req.params.month && req.params.day) {
+        url = url + "?year=" + req.params.year + "&month=" + req.params.month + "&day=" + req.params.day;
+    }
+
+    var teams = myCache.get('teams');
+    if(!teams) {
+        request(url, function (error, response, body) {
+            var teams = scrapeEspn(body);
+            myCache.set('teams', teams, 3600);
+            res.send(JSON.stringify(teams))
+        });
+    } else {
+        res.send(JSON.stringify({ values: teams}));
+    }
+}
+
+app.get('/scrape/year/:year/month/:month/day/:day', processResults);
+app.get('/scrape', processResults);
+
 
 app.get('/', function(req, res) { 
   res.sendFile(__dirname+
