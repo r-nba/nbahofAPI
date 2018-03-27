@@ -127,7 +127,7 @@ var processResults = function (req, res) {
     } else {
         res.send(JSON.stringify({ values: teams}));
     }
-}
+};
 
 app.get('/scrape/year/:year/month/:month/day/:day', processResults);
 app.get('/scrape', processResults);
