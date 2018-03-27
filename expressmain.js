@@ -111,17 +111,22 @@ var processResults = function (req, res) {
     res.setHeader("Content-Type", "application/json");
     console.log(req.params);
 
+    var year = req.params.year;
+    var month = req.params.month;
+    var day = req.params.day;
+
     var url = 'https://www.basketball-reference.com/boxscores/';
 
     if(req.params.year && req.params.month && req.params.day) {
-        url = url + "?year=" + req.params.year + "&month=" + req.params.month + "&day=" + req.params.day;
+        url = url + "?year=" + year + "&month=" + month + "&day=" + day;
     }
+    console.log(url);
 
-    var teams = myCache.get('teams');
+    var teams = myCache.get('teams' + year + month + day);
     if(!teams) {
         request(url, function (error, response, body) {
             var teams = scrapeEspn(body);
-            myCache.set('teams', teams, 3600);
+            myCache.set('teams' + year + month + day, teams, 3600);
             res.send(JSON.stringify(teams))
         });
     } else {
