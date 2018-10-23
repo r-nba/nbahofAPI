@@ -101,6 +101,10 @@ var scrapeEspn = function(body) {
         var lossesLastYear = 82 - team['Last'];
         team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
         teams[teamName] = team;
+        team['overScore'] = (isOver ? 5 : -5) + team['pythagTotalWins'] - team['OU'];
+        team['underScore'] = (isOver ? -5 : 5) + team['OU'] - team['pythagTotalWins'];
+        team['overLockScore'] = 2 * team['overScore'];
+        team['underLockScore'] = 2 * team['underScore'];
 
     });
 
