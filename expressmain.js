@@ -26,36 +26,36 @@ var translations  = {
 };
 
 var predictions = {
-    'Sacramento Kings': {Last: 32, OU: 27.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Phoenix Suns': {Last: 24, OU: 29, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Los Angeles Lakers': {Last: 26, OU: 33.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Dallas Mavericks': {Last: 33, OU: 35.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Memphis Grizzlies': {Last: 43, OU: 37.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'New Orleans Pelicans': {Last: 34, OU: 39.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Utah Jazz': {Last: 51, OU: 41, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Portland Trail Blazers': {Last: 41, OU: 42.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'LA Clippers': {Last: 51, OU: 43.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Denver Nuggets': {Last: 40, OU: 45.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Minnesota Timberwolves': {Last: 31, OU: 48.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Oklahoma City Thunder': {Last: 47, OU: 50.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'San Antonio Spurs': {Last: 61, OU: 54.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Houston Rockets': {Last: 55, OU: 55.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Golden State Warriors': {Last: 67, OU: 67.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Chicago Bulls': {Last: 41, OU: 22, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Atlanta Hawks': {Last: 43, OU: 25.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Brooklyn Nets': {Last: 20, OU: 27.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'New York Knicks': {Last: 31, OU: 30.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Indiana Pacers': {Last: 42, OU: 31.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Orlando Magic': {Last: 29, OU: 33.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Detroit Pistons': {Last: 37, OU: 38.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Philadelphia 76ers': {Last: 28, OU: 41.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Charlotte Hornets': {Last: 36, OU: 42.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Miami Heat': {Last: 41, OU: 43.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Milwaukee Bucks': {Last: 42, OU: 47.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Washington Wizards': {Last: 49, OU: 48, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Toronto Raptors': {Last: 51, OU: 48.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Cleveland Cavaliers': {Last: 51, OU: 53.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15},
-    'Boston Celtics': {Last: 53, OU: 55.5, overScore: 5, underScore:10, overLockScore:30, underLockScore:15}
+    'Sacramento Kings': {Last: 37, OU: 25.5},
+    'Phoenix Suns': {Last: 21, OU: 29.5},
+    'Los Angeles Lakers': {Last: 35, OU: 48.5},
+    'Dallas Mavericks': {Last: 24, OU: 34.5},
+    'Memphis Grizzlies': {Last: 22, OU: 33.5},
+    'New Orleans Pelicans': {Last: 48, OU: 45.5},
+    'Utah Jazz': {Last: 48, OU: 49.5},
+    'Portland Trail Blazers': {Last: 49, OU: 42.5},
+    'LA Clippers': {Last: 42, OU: 36.5},
+    'Denver Nuggets': {Last: 46, OU: 47.5},
+    'Minnesota Timberwolves': {Last: 47, OU: 41.5},
+    'Oklahoma City Thunder': {Last: 48, OU: 48.5},
+    'San Antonio Spurs': {Last: 47, OU: 43.5},
+    'Houston Rockets': {Last: 65, OU: 55.5},
+    'Golden State Warriors': {Last: 58, OU: 63.5},
+    'Chicago Bulls': {Last: 27, OU: 29.5},
+    'Atlanta Hawks': {Last: 24, OU: 23.5},
+    'Brooklyn Nets': {Last: 28, OU: 31.5},
+    'New York Knicks': {Last: 29, OU: 29.5},
+    'Indiana Pacers': {Last: 48, OU: 47.5},
+    'Orlando Magic': {Last: 25, OU: 31.5},
+    'Detroit Pistons': {Last: 39, OU: 38.5},
+    'Philadelphia 76ers': {Last: 52, OU: 53.5},
+    'Charlotte Hornets': {Last: 36, OU: 35.5},
+    'Miami Heat': {Last: 44, OU: 43.5},
+    'Milwaukee Bucks': {Last: 44, OU: 48.5},
+    'Washington Wizards': {Last: 43, OU: 44.5},
+    'Toronto Raptors': {Last: 59, OU: 55.5},
+    'Cleveland Cavaliers': {Last: 50, OU: 30.5},
+    'Boston Celtics': {Last: 55, OU: 58.5}
 };
 
 var calculatePythagoreanTotalWins = function(winPerc, gamesPlayed, winsSoFar) {
@@ -100,12 +100,13 @@ var scrapeEspn = function(body) {
         team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
         var lossesLastYear = 82 - team['Last'];
         team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
-        teams[teamName] = team;
         var isOver = team['actualWins'] > team['OU'];
         team['overScore'] = (isOver ? 5 : -5) + team['pythagTotalWins'] - team['OU'];
         team['underScore'] = (isOver ? -5 : 5) + team['OU'] - team['pythagTotalWins'];
         team['overLockScore'] = 2 * team['overScore'];
         team['underLockScore'] = 2 * team['underScore'];
+
+        teams[teamName] = team;
 
     });
 
