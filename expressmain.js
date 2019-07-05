@@ -26,36 +26,36 @@ var translations  = {
 };
 
 var predictions = {
-    'Sacramento Kings': {Last: 37, OU: 25.5},
-    'Phoenix Suns': {Last: 21, OU: 29.5},
-    'Los Angeles Lakers': {Last: 35, OU: 48.5},
-    'Dallas Mavericks': {Last: 24, OU: 34.5},
-    'Memphis Grizzlies': {Last: 22, OU: 33.5},
-    'New Orleans Pelicans': {Last: 48, OU: 45.5},
-    'Utah Jazz': {Last: 48, OU: 49.5},
-    'Portland Trail Blazers': {Last: 49, OU: 42.5},
-    'LA Clippers': {Last: 42, OU: 36.5},
-    'Denver Nuggets': {Last: 46, OU: 47.5},
-    'Minnesota Timberwolves': {Last: 47, OU: 41.5},
-    'Oklahoma City Thunder': {Last: 48, OU: 48.5},
-    'San Antonio Spurs': {Last: 47, OU: 43.5},
-    'Houston Rockets': {Last: 65, OU: 55.5},
-    'Golden State Warriors': {Last: 58, OU: 63.5},
-    'Chicago Bulls': {Last: 27, OU: 29.5},
-    'Atlanta Hawks': {Last: 24, OU: 23.5},
-    'Brooklyn Nets': {Last: 28, OU: 31.5},
-    'New York Knicks': {Last: 29, OU: 29.5},
-    'Indiana Pacers': {Last: 48, OU: 47.5},
-    'Orlando Magic': {Last: 25, OU: 31.5},
-    'Detroit Pistons': {Last: 39, OU: 38.5},
-    'Philadelphia 76ers': {Last: 52, OU: 53.5},
-    'Charlotte Hornets': {Last: 36, OU: 35.5},
-    'Miami Heat': {Last: 44, OU: 43.5},
-    'Milwaukee Bucks': {Last: 44, OU: 48.5},
-    'Washington Wizards': {Last: 43, OU: 44.5},
-    'Toronto Raptors': {Last: 59, OU: 55.5},
-    'Cleveland Cavaliers': {Last: 50, OU: 30.5},
-    'Boston Celtics': {Last: 55, OU: 58.5}
+    'Sacramento Kings': {winsLastYear: 37, overUnder: 25.5},
+    'Phoenix Suns': {winsLastYear: 21, overUnder: 29.5},
+    'Los Angeles Lakers': {winsLastYear: 35, overUnder: 48.5},
+    'Dallas Mavericks': {winsLastYear: 24, overUnder: 34.5},
+    'Memphis Grizzlies': {winsLastYear: 22, overUnder: 33.5},
+    'New Orleans Pelicans': {winsLastYear: 48, overUnder: 45.5},
+    'Utah Jazz': {winsLastYear: 48, overUnder: 49.5},
+    'Portland Trail Blazers': {winsLastYear: 49, overUnder: 42.5},
+    'LA Clippers': {winsLastYear: 42, overUnder: 36.5},
+    'Denver Nuggets': {winsLastYear: 46, overUnder: 47.5},
+    'Minnesota Timberwolves': {winsLastYear: 47, overUnder: 41.5},
+    'Oklahoma City Thunder': {winsLastYear: 48, overUnder: 48.5},
+    'San Antonio Spurs': {winsLastYear: 47, overUnder: 43.5},
+    'Houston Rockets': {winsLastYear: 65, overUnder: 55.5},
+    'Golden State Warriors': {winsLastYear: 58, overUnder: 63.5},
+    'Chicago Bulls': {winsLastYear: 27, overUnder: 29.5},
+    'Atlanta Hawks': {winsLastYear: 24, overUnder: 23.5},
+    'Brooklyn Nets': {winsLastYear: 28, overUnder: 31.5},
+    'New York Knicks': {winsLastYear: 29, overUnder: 29.5},
+    'Indiana Pacers': {winsLastYear: 48, overUnder: 47.5},
+    'Orlando Magic': {winsLastYear: 25, overUnder: 31.5},
+    'Detroit Pistons': {winsLastYear: 39, overUnder: 38.5},
+    'Philadelphia 76ers': {winsLastYear: 52, overUnder: 53.5},
+    'Charlotte Hornets': {winsLastYear: 36, overUnder: 35.5},
+    'Miami Heat': {winsLastYear: 44, overUnder: 43.5},
+    'Milwaukee Bucks': {winsLastYear: 44, overUnder: 48.5},
+    'Washington Wizards': {winsLastYear: 43, overUnder: 44.5},
+    'Toronto Raptors': {winsLastYear: 59, overUnder: 55.5},
+    'Cleveland Cavaliers': {winsLastYear: 50, overUnder: 30.5},
+    'Boston Celtics': {winsLastYear: 55, overUnder: 58.5}
 };
 
 var calculatePythagoreanTotalWins = function(winPerc, gamesPlayed, winsSoFar) {
@@ -87,24 +87,19 @@ var scrapeEspn = function(body) {
         var pointsAgainst = $(this).children()[6].children[0].data;
         var winPerc = calculatePythagoreanWinPercentage(pointsFor, pointsAgainst);
         var team = predictions[teamName];
-        team['actualWins'] = parseInt($(this).children()[1].children[0].data);
+        team['wins'] = parseInt($(this).children()[1].children[0].data);
         team['losses'] = parseInt($(this).children()[2].children[0].data);
         team['differential'] = (pointsFor-pointsAgainst).toFixed(3);
-        var gamesPlayed = team['actualWins'] + team['losses'];
+        var gamesPlayed = team['wins'] + team['losses'];
 
-        team['winPerc'] = (Math.round((team['actualWins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
-        team['pythagTotalWins'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['actualWins']);
-        team['pythagWinsSoFar'] = calculatePythagoreanWinsSoFar(winPerc, gamesPlayed);
-        team['isUnderImpossible'] = team['actualWins'] > team['OU'];
+        team['winPercentage'] = (Math.round((team['wins']/gamesPlayed)*1000) / 1000.0).toFixed(3);
+        team['projectedWinTotal'] = calculatePythagoreanTotalWins(winPerc, gamesPlayed, team['wins']);
+        team['isUnderImpossible'] = team['wins'] > team['overUnder'];
         var gamesRemaining = 82-gamesPlayed;
-        team['isOverImpossible'] = team['actualWins'] + gamesRemaining < team['OU'];
-        var lossesLastYear = 82 - team['Last'];
-        team['lastYearsRecord'] = team['Last'] + "-" + lossesLastYear;
-        var isOver = team['pythagTotalWins'] > team['OU'];
-        team['overScore'] = (isOver ? 5 : -5) + team['pythagTotalWins'] - team['OU'];
-        team['underScore'] = (isOver ? -5 : 5) + team['OU'] - team['pythagTotalWins'];
-        team['overLockScore'] = 2 * team['overScore'];
-        team['underLockScore'] = 2 * team['underScore'];
+        team['isOverImpossible'] = team['wins'] + gamesRemaining < team['overUnder'];
+        var lossesLastYear = 82 - team['winsLastYear'];
+        team['lastYearsRecord'] = team['winsLastYear'] + "-" + lossesLastYear;
+        var isOver = team['projectedWinTotal'] > team['overUnder'];
 
         teams[teamName] = team;
 
@@ -149,6 +144,6 @@ app.get('/', function(req, res) {
     '/public/scraper.html');
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3008;
 console.log("listening on port" + port);
 app.listen(port);
