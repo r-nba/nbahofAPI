@@ -135,14 +135,8 @@ var processResults = function (req, res) {
     }
 };
 
-app.get('/scrape/year/:year/month/:month/day/:day', processResults);
-app.get('/scrape', processResults);
-
-
-app.get('/', function(req, res) { 
-  res.sendFile(__dirname+
-    '/public/scraper.html');
-});
+app.get('/year/:year/month/:month/day/:day', processResults);
+app.get('/', processResults);
 
 var port = process.env.PORT || 3008;
 console.log("listening on port" + port);
